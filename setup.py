@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sphinxcontrib-lilypond',
-    version='1.0.0',
+    version='1.1.0',
     url='https://github.com/FabriceSalvaire/sphinx-lilypond',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-lilypond',
     author='Fabrice Salvaire', # Wei-Wei Guo

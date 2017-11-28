@@ -150,7 +150,7 @@ def render_lily(self, lily_source):
     if os.path.isfile(absolut_filename):
         return relative_filename
 
-    lily_source = DOCUMENT_BEGIN + self.builder.config.pnglily_preamble + lily_source
+    lily_source = DOCUMENT_BEGIN + self.builder.config.lilypond_preamble + lily_source
 
     # use only one tempdir per build -- the use of a directory is cleaner
     # than using temporary files, since we can clean up everything at once
@@ -167,7 +167,7 @@ def render_lily(self, lily_source):
     ensuredir(os.path.dirname(absolut_filename))
 
     # use some standard lilypond arguments
-    lilypond_args = [self.builder.config.pnglily_lilypond]
+    lilypond_args = [self.builder.config.lilypond_command]
     # Cropped SVG
     # http://lilypond.1069038.n5.nabble.com/Cropped-SVG-Output-td182397.html
     # https://github.com/Abjad/abjad/issues/606 Option to ask lilypond to render to SVG and use ipython.display.SVG to show it #606
@@ -185,7 +185,7 @@ def render_lily(self, lily_source):
         '-dresolution=200',
     ]
     # add custom ones from config value
-    lilypond_args.extend(self.builder.config.pnglily_lilypond_args)
+    lilypond_args.extend(self.builder.config.lilypond_args)
 
     # last, the input file name
     lilypond_args.append(lilypond_input_file)
@@ -195,8 +195,8 @@ def render_lily(self, lily_source):
     except OSError as exception:
         if exception.errno != 2:   # No such file or directory
             raise
-        template = 'lilypond command {} cannot be run (needed for music display), check the pnglily_lilypond setting'
-        self.builder.warn(template.format(self.builder.config.pnglily_lilypond))
+        template = 'lilypond command {} cannot be run (needed for music display), check the lilypond_command setting'
+        self.builder.warn(template.format(self.builder.config.lilypond_command))
         self.builder._lilypond_warned = True
         return None, None
     stdout, stderr = process.communicate()
@@ -240,7 +240,7 @@ def latex_visit_displaylily(self, node):
 
 def html_visit_lily(self, node):
 
-    lily_source = INLINE_BEGIN.format(self.builder.config.pnglily_fontsize[0])
+    lily_source = INLINE_BEGIN.format(self.builder.config.lilypond_fontsize[0])
     lily_source += node['lily_source'] + INLINE_END
     # lily_source += '#"' + node['lily_source'] + '"' + INLINE_END
 
@@ -272,8 +272,8 @@ def html_visit_displaylily(self, node):
         lily_source = node['lily_source']
     else:
         lily_source = DIRECTIVE_BEGIN.format(
-            self.builder.config.pnglily_fontsize[1],
-            self.builder.config.pnglily_fontsize[1]
+            self.builder.config.lilypond_fontsize[1],
+            self.builder.config.lilypond_fontsize[1]
         )
         lily_source += node['lily_source'] + DIRECTIVE_END
 
@@ -314,9 +314,9 @@ def setup(app):
 
     app.add_directive('lily', LilyDirective)
 
-    app.add_config_value('pnglily_preamble', '', False)
-    app.add_config_value('pnglily_fontsize', ['10', '-3'], False)
-    app.add_config_value('pnglily_lilypond', 'lilypond', False)
-    app.add_config_value('pnglily_lilypond_args', [], False)
+    app.add_config_value('lilypond_preamble', '', False)
+    app.add_config_value('lilypond_fontsize', ['10', '-3'], False)
+    app.add_config_value('lilypond_command', 'lilypond', False)
+    app.add_config_value('lilypond_args', [], False)
 
     app.connect('build-finished', cleanup_lily_tempdir)

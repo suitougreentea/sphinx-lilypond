@@ -31,10 +31,16 @@
 This plugin implements a ``lily`` role and directive to include Music score formatted by `Lilypond
 <http://lilypond.org>`_.
 
+Changelog
+---------
+
+* 2017-xx SVG format is waiting a cropping solution
+* 2017-11 Cleanup for Python 3
+
 Credits
 -------
 
-* `Fabrice Salvaire <http://fabrice-salvaire.fr>`_ 2017 (cleanup for Python 3)
+* `Fabrice Salvaire <http://fabrice-salvaire.fr>`_ 2017
 * Wei-Wei Guo 2009, licensed under BSD https://bitbucket.org/birkenfeld/sphinx-contrib
 
 Installation
@@ -74,3 +80,10 @@ The ``lilypond_fontsize`` variable can be used to set the font size::
 
 * The first value is for ``lily`` role setting in absolute font size.
 * The second value is for ``lily`` directive setting in relative font size.
+
+Default settings::
+
+    lilypond_preamble = ''
+    lilypond_fontsize = ['10', '-3']
+    lilypond_command = 'lilypond'
+    lilypond_args = []
