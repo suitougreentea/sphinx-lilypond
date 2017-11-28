@@ -1,25 +1,62 @@
-.. -*- restructuredtext -*-
+.. |Pypi Version| image:: https://img.shields.io/pypi/v/sphinxcontrib-lilypond.svg
+   :target: https://pypi.python.org/pypi/sphinxcontrib-lilypond
+   :alt: sphinxcontrib-lilypond last version
 
-=============================
-README for Lilypond Extension
-=============================
+.. |Pypi License| image:: https://img.shields.io/pypi/l/sphinxcontrib-lilypond.svg
+   :target: https://pypi.python.org/pypi/sphinxcontrib-lilypond
+   :alt: sphinxcontrib-lilypond license
 
-It's a extension for including Lilypond music notes. The extension is made by modifying mathbase.py
-and pngmath.py. Most codes are copied and pasted with some tiny changes.
+.. |Pypi Python Version| image:: https://img.shields.io/pypi/pyversions/sphinxcontrib-lilypond.svg
+   :target: https://pypi.python.org/pypi/sphinxcontrib-lilypond
+   :alt: sphinxcontrib-lilypond python version
 
+.. |Python| replace:: Python
+.. _Python: http://python.org
+
+.. |PyPI| replace:: PyPI
+.. _PyPI: https://pypi.python.org/pypi
+
+.. |Sphinx| replace:: Sphinx
+.. _Sphinx: http://sphinx-doc.org
+
+==============================
+ Lilypond plugin for Sphinx
+==============================
+
+|Pypi License|
+|Pypi Python Version|
+
+|Pypi Version|
+
+This plugin implements a ``lily`` role and directive to including Lilypond score.
+
+Credits
+-------
+
+* `Fabrice Salvaire <http://fabrice-salvaire.fr>`_ 2017 (cleanup for Python 3)
+* Wei-Wei Guo 2009, licensed under BSD
+
+Installation
+------------
+
+Using ``pip``:
+
+.. code-block:: bash
+
+    pip install sphinxcontrib-lilypond
 
 Functionalities
-===============
+---------------
 
-- A new role 'lily'. the 'lily' role can input a standalone music markup.
-  For example, a G clef can be inserted by ::
+- A ``lily`` role to include a standalone music markup.
+  For example, a G clef can be inserted by::
 
      :lily:`\musicglyph #"clefs.G"`
 
   The purpose of the 'lily' role is writing music comments or learning notes.
   So only one markup is allowed.
 
-- A new directive 'lily'. The 'lily' directive can input a piece of music script, for example, ::
+- A ``lily`` directive to include a score, for example::
 
      .. lily::
 
@@ -27,14 +64,12 @@ Functionalities
           c4 a d c
         }
 
+Settings
+--------
 
-Installing
-==========
+The ``lilypond_fontsize`` variable can be used to set the font size::
 
-- A new config 'pnglily_fontsize', which can be used to set fontsize of 'lily' role and 'lily'
-  directive. ::
+     lilypond_fontsize = ['6', '-3']
 
-     pnglily_fontsize = ['6', '-3']
-
-  The first value is for 'lily' role setting in absolute fontsize. The second value is for 'lily'
-  directive setting in relative fontsize.
+* The first value is for ``lily`` role setting in absolute font size.
+* The second value is for ``lily`` directive setting in relative font size.
