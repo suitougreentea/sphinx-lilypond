@@ -34,7 +34,7 @@ Credits
 -------
 
 * `Fabrice Salvaire <http://fabrice-salvaire.fr>`_ 2017 (cleanup for Python 3)
-* Wei-Wei Guo 2009, licensed under BSD
+* Wei-Wei Guo 2009, licensed under BSD https://bitbucket.org/birkenfeld/sphinx-contrib
 
 Installation
 ------------
