@@ -28,7 +28,8 @@
 
 |Pypi Version|
 
-This plugin implements a ``lily`` role and directive to including Lilypond score.
+This plugin implements a ``lily`` role and directive to include Music score formatted by `Lilypond
+<http://lilypond.org>`_.
 
 Credits
 -------
