@@ -76,7 +76,7 @@ Settings
 
 The ``lilypond_fontsize`` variable can be used to set the font size::
 
-     lilypond_fontsize = ['6', '-3']
+     lilypond_fontsize = [6, -3]
 
 * The first value is for ``lily`` role setting in absolute font size.
 * The second value is for ``lily`` directive setting in relative font size.
@@ -84,6 +84,6 @@ The ``lilypond_fontsize`` variable can be used to set the font size::
 Default settings::
 
     lilypond_preamble = ''
-    lilypond_fontsize = ['10', '-3']
+    lilypond_fontsize = [10, -3]
     lilypond_command = 'lilypond'
     lilypond_args = []

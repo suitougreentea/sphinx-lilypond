@@ -61,8 +61,8 @@ INLINE_END = r'''
 
 DIRECTIVE_BEGIN = r'''
 \new Score \with {{
-  fontSize = #{}
-  \override StaffSymbol #'staff-space = #(magstep {})
+  fontSize = #{0}
+  \override StaffSymbol #'staff-space = #(magstep {0})
 }}{{ <<
 '''
 
@@ -240,7 +240,9 @@ def latex_visit_displaylily(self, node):
 
 def html_visit_lily(self, node):
 
-    lily_source = INLINE_BEGIN.format(self.builder.config.lilypond_fontsize[0])
+    lily_source = INLINE_BEGIN.format(
+        self.builder.config.lilypond_fontsize[0],
+    )
     lily_source += node['lily_source'] + INLINE_END
     # lily_source += '#"' + node['lily_source'] + '"' + INLINE_END
 
@@ -273,7 +275,6 @@ def html_visit_displaylily(self, node):
     else:
         lily_source = DIRECTIVE_BEGIN.format(
             self.builder.config.lilypond_fontsize[1],
-            self.builder.config.lilypond_fontsize[1]
         )
         lily_source += node['lily_source'] + DIRECTIVE_END
 
@@ -315,7 +316,7 @@ def setup(app):
     app.add_directive('lily', LilyDirective)
 
     app.add_config_value('lilypond_preamble', '', False)
-    app.add_config_value('lilypond_fontsize', ['10', '-3'], False)
+    app.add_config_value('lilypond_fontsize', [10, -3], False)
     app.add_config_value('lilypond_command', 'lilypond', False)
     app.add_config_value('lilypond_args', [], False)
 
